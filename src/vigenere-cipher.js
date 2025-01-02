@@ -71,18 +71,15 @@ class VigenereCipheringMachine {
       const b = alphabetObj[keyFull[i]];
       let charCode;
 
-      // Учитываем сдвиг в зависимости от режима
       if (mode === "encrypt") {
-        charCode = 65 + ((a + b) % 26); // для шифрования
+        charCode = 65 + ((a + b) % 26);
       } else {
-        charCode = 65 + ((a - b + 26) % 26); // для расшифровки
+        charCode = 65 + ((a - b + 26) % 26);
       }
 
-      // Добавляем символ в строку зашифрованных/расшифрованных букв
       letters += String.fromCharCode(charCode);
     }
 
-    // Обрабатываем исходное сообщение с учётом букв и неалфавитных символов
     for (let i = 0; i < msg.length; i++) {
       const el = msg[i];
       if (!/[a-zA-Z]/.test(el)) {
@@ -93,7 +90,6 @@ class VigenereCipheringMachine {
       }
     }
 
-    // Если флаг false, переворачиваем строку
     return this.flag ? result : result.split("").reverse().join("");
   }
 
